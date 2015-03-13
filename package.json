@@ -4,7 +4,8 @@
   "description": "Simply trying to check if browserify is for me",
   "main": "app.js",
   "scripts": {
-    "test": "mocha -u bdd -R spec -t 500 --recursive"
+    "test": "mocha -u bdd -R spec -t 500 --recursive",
+    "build-js": "browserify index.js > target.js"
   },
   "author": "David G. Chaves <davidgchaves@gmail.com>",
   "license": "ISC",
