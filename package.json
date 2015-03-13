@@ -4,7 +4,7 @@
   "description": "Simply trying to check if browserify is for me",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha -u bdd -R spec -t 500 --recursive"
   },
   "author": "David G. Chaves <davidgchaves@gmail.com>",
   "license": "ISC",
