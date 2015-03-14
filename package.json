@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "mocha -u bdd -R spec -t 500 --recursive",
-    "build-js": "browserify index.js > target.js"
+    "build-js": "browserify index.js > build/target.js"
   },
   "author": "David G. Chaves <davidgchaves@gmail.com>",
   "license": "ISC",
