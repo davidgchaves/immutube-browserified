@@ -3,8 +3,8 @@
 var chai   = require('chai'),
     expect = chai.expect;
 
-var app  = require('../lib/app'),
-    data = require('../lib/people');
+var app  = require('../client/app'),
+    data = require('../client/people');
 
 describe('require(whatever)', function () {
 
