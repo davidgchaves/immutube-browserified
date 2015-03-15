@@ -51,3 +51,7 @@ gulp.task('watch', function() {
   gulp.watch('test/client/**/*.js', ['test']);
 });
 
+// Build and Default Tasks
+gulp.task('build', ['browserify-client']);
+gulp.task('default', ['test', 'build']);
+
