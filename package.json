@@ -2,7 +2,7 @@
   "name": "browserify-immutube",
   "version": "0.0.1",
   "description": "Simply trying to check if browserify is for me",
-  "main": "app.js",
+  "main": "./client/index.js",
   "scripts": {
     "test": "mocha -u bdd -R spec -t 500 --recursive"
   },
