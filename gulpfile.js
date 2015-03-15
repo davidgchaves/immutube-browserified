@@ -8,6 +8,9 @@ var browserify = require('gulp-browserify');
 // Dev Dependencies
 var jshint = require('gulp-jshint');
 
+// Test Dependencies
+var mochaPhantomjs = require('gulp-mocha-phantomjs');
+
 // Lint Tasks
 gulp.task('lint-client', function() {
   return gulp.src('./client/**/*.js')
@@ -37,3 +40,14 @@ gulp.task('browserify-test', ['lint-test'], function() {
     .pipe(gulp.dest('build'));
 });
  
+// Test Tasks
+gulp.task('test', ['lint-test', 'browserify-test'], function() {
+  return gulp.src('test/client/runner.html')
+    .pipe(mochaPhantomjs({interface: 'bdd', reporter: 'spec'}));
+});
+
+gulp.task('watch', function() {
+  gulp.watch('client/**/*.js', ['browserify-client', 'test']);
+  gulp.watch('test/client/**/*.js', ['test']);
+});
+
