@@ -15,3 +15,11 @@ describe('require(whatever)', function () {
 
 });
 
+describe('require(jquery)', function () {
+
+  it('loads jQuery', function () {
+    expect(app.loadjQuery()).not.to.be.undefined;
+  });
+
+});
+
