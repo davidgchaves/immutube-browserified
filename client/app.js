@@ -1,5 +1,6 @@
 var R = require('ramda');
 var $ = require('jquery');
+var B = require('baconjs');
 
 var isSuperman    = function(name) { return (name === 'Clark Kent'); };
 var isSupermanLog = function(name) {
@@ -9,6 +10,14 @@ var loadjQuery = function () {
   console.log($);
   return $;
 };
+var loadBaconjs = function () {
+  console.log(B);
+  return B;
+};
+var baconjsToString = function () {
+  return B.toString();
+};
+
 
 var findSupermanIn    = R.find(isSuperman);
 var findSupermanInLog = R.map(isSupermanLog);
@@ -16,4 +25,6 @@ var findSupermanInLog = R.map(isSupermanLog);
 exports.findSupermanIn    = findSupermanIn;
 exports.findSupermanInLog = findSupermanInLog;
 exports.loadjQuery        = loadjQuery;
+exports.loadBaconjs       = loadBaconjs;
+exports.baconjsToString   = baconjsToString;
 

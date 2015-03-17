@@ -23,3 +23,11 @@ describe('require(jquery)', function () {
 
 });
 
+describe('require(baconjs)', function () {
+
+  it('loads baconjs', function () {
+    expect(app.baconjsToString()).to.be.equal('Bacon');
+  });
+
+});
+

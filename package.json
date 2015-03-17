@@ -9,6 +9,7 @@
   "author": "David G. Chaves <davidgchaves@gmail.com>",
   "license": "ISC",
   "devDependencies": {
+    "baconjs": "^0.7.53",
     "browserify": "^9.0.3",
     "chai": "^2.1.1",
     "gulp": "^3.8.11",

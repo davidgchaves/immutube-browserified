@@ -3,4 +3,5 @@ var app  = require('./app'),
 
 app.findSupermanInLog(data.mrKentIsInThaHouse);
 app.loadjQuery();
+app.loadBaconjs();
 
