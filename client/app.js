@@ -1,6 +1,7 @@
 var R = require('ramda');
 var $ = require('jquery');
 var B = require('baconjs');
+var P = require('pointfree-fantasy');
 
 var isSuperman    = function(name) { return (name === 'Clark Kent'); };
 var isSupermanLog = function(name) {
@@ -17,6 +18,10 @@ var loadBaconjs = function () {
 var baconjsToString = function () {
   return B.toString();
 };
+var loadPointfree = function () {
+  console.log(P);
+  return P;
+};
 
 
 var findSupermanIn    = R.find(isSuperman);
@@ -27,4 +32,5 @@ exports.findSupermanInLog = findSupermanInLog;
 exports.loadjQuery        = loadjQuery;
 exports.loadBaconjs       = loadBaconjs;
 exports.baconjsToString   = baconjsToString;
+exports.loadPointfree     = loadPointfree;
 

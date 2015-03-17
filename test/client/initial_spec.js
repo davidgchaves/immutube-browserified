@@ -31,3 +31,11 @@ describe('require(baconjs)', function () {
 
 });
 
+describe('require(pointfree)', function () {
+
+  it('loads pointfree-fantasy', function () {
+    expect(app.loadPointfree().I('Blah')).to.be.deep.equal('Blah');
+  });
+
+});
+
