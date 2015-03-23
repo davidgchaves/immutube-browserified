@@ -22,7 +22,15 @@ var loadPointfree = function () {
   console.log(P);
   return P;
 };
-
+var hellojQuery = function() {
+  return $(document).ready(function() {
+    $('body').append(
+      $('<div/>')
+        .addClass('selected')
+        .attr({ id: 'body', title: 'Hello jQuery' })
+        .text('Hello, World!'));
+  });
+};
 
 var findSupermanIn    = R.find(isSuperman);
 var findSupermanInLog = R.map(isSupermanLog);
@@ -33,4 +41,5 @@ exports.loadjQuery        = loadjQuery;
 exports.loadBaconjs       = loadBaconjs;
 exports.baconjsToString   = baconjsToString;
 exports.loadPointfree     = loadPointfree;
+exports.hellojQuery       = hellojQuery;
 
