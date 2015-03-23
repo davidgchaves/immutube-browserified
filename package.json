@@ -9,7 +9,6 @@
   "author": "David G. Chaves <davidgchaves@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "baconjs": "^0.7.53",
     "browserify": "^9.0.3",
     "chai": "^2.1.1",
     "gulp": "^3.8.11",
@@ -17,10 +16,13 @@
     "gulp-mocha-phantomjs": "^0.5.3",
     "gulp-rename": "^1.2.0",
     "gulp-util": "^3.0.4",
-    "jquery": "^2.1.3",
     "mocha": "^2.2.1",
     "pointfree-fantasy": "^0.1.1",
-    "ramda": "^0.11.0",
     "vinyl-transform": "^1.0.0"
+  },
+  "dependencies": {
+    "baconjs": "^0.7.53",
+    "jquery": "^2.1.3",
+    "ramda": "^0.13.0"
   }
 }
