@@ -1,9 +1,10 @@
 // Gulp Dependencies
-var gulp   = require('gulp');
-var rename = require('gulp-rename');
+var gulp      = require('gulp');
+var rename    = require('gulp-rename');
+var transform = require('vinyl-transform');
 
 // Build Dependencies
-var browserify = require('gulp-browserify');
+var browserify = require('browserify');
 
 // Dev Dependencies
 var jshint = require('gulp-jshint');
@@ -25,9 +26,16 @@ gulp.task('lint-test', function() {
 });
 
 // Browserify Tasks
+
+// browserified transforms a regular node stream to a gulp (buffered vinyl) stream
+var browserified = transform(function(filename) {
+  var b = browserify({ entries: filename, debug: true, insertGlobals: true });
+  return b.bundle();
+});
+
 gulp.task('browserify-client', ['lint-client'], function() {
   return gulp.src('client/index.js')
-    .pipe(browserify({ insertGlobals: true }))
+    .pipe(browserified)
     .pipe(rename('client.js'))
     .pipe(gulp.dest('build'))
     .pipe(gulp.dest('public/javascripts'));
@@ -35,7 +43,7 @@ gulp.task('browserify-client', ['lint-client'], function() {
 
 gulp.task('browserify-test', ['lint-test'], function() {
   return gulp.src('test/client/initial_spec.js')
-    .pipe(browserify({ insertGlobals: true }))
+    .pipe(browserified)
     .pipe(rename('client-test.js'))
     .pipe(gulp.dest('build'));
 });
