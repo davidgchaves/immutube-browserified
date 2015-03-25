@@ -38,8 +38,10 @@ var keyUpEventToStream = eventToStream('keyup');
 //    - we are looking for "tarkovsky" videos and
 //    - we already have typed in "tarkovsk"
 //
+//  eventValue :: DOMEvent -> String
+var eventValue = compose(R.prop('value'), R.prop('target'));
 //  valueToStream :: DOM -> EventStream String
-var valueToStream = compose(map(R.prop('value')), map(R.prop('target')), keyUpEventToStream);
+var valueToStream = compose(map(eventValue), keyUpEventToStream);
 
 
 /*
