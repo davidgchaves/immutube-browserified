@@ -49,6 +49,8 @@ var valueToStream = compose(map(eventValue), keyUpEventToStream);
 var searchTermToURL = function(searchTerm) {
   return 'http://gdata.youtube.com/feeds/api/videos?' + $.param({q: searchTerm, alt: 'json'});
 };
+//  urlToStream :: DOM -> EventStream URL
+var urlToStream = compose(map(searchTermToURL), valueToStream);
 
 /*
  * IMPURE
