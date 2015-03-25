@@ -43,6 +43,12 @@ var eventValue = compose(R.prop('value'), R.prop('target'));
 //  valueToStream :: DOM -> EventStream String
 var valueToStream = compose(map(eventValue), keyUpEventToStream);
 
+// The search URL we are targeting looks like:
+//    http://gdata.youtube.com/feeds/api/videos?q=[SEARCH_TERM]&alt=json
+//  searchTermToURL :: String -> URL
+var searchTermToURL = function(searchTerm) {
+  return 'http://gdata.youtube.com/feeds/api/videos?' + $.param({q: searchTerm, alt: 'json'});
+};
 
 /*
  * IMPURE
