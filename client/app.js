@@ -36,3 +36,5 @@ var keyUpEventToStream = eventToStream('keyup');
  * IMPURE
  */
 
+exports.logKeyUpEventsIntoTheConsole = domSelectorToIO('#search').map(keyUpEventToStream).runIO().onValue(log);
+
