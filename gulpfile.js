@@ -1,9 +1,10 @@
 'use strict';
 
 // Gulp Dependencies
-var gulp      = require('gulp');
-var rename    = require('gulp-rename');
-var transform = require('vinyl-transform');
+var gulp       = require('gulp');
+var rename     = require('gulp-rename');
+var sourcemaps = require('gulp-sourcemaps');
+var transform  = require('vinyl-transform');
 
 // Build Dependencies
 var browserify = require('browserify');
@@ -38,7 +39,9 @@ var browserified = transform(function(filename) {
 gulp.task('browserify-client', ['lint-client'], function() {
   return gulp.src('client/index.js')
     .pipe(browserified)
-    .pipe(rename('client.js'))
+    .pipe(sourcemaps.init({loadMaps: true}))
+      .pipe(rename('client.js'))
+    .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('build'))
     .pipe(gulp.dest('public/javascripts'));
 });
