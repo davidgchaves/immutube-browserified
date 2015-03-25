@@ -32,6 +32,16 @@ var domSelectorToIO = $.toIO();
 //  keyUpEventToStream :: DOM -> EventStream DOMEvent
 var keyUpEventToStream = eventToStream('keyup');
 
+// After examining in the browser the object containing the keyUpEventToStream output,
+// we saw that we need to get the 'target' property and inside that, the 'value' property.
+// An example of 'value' could be "tarkovsk" because:
+//    - we are looking for "tarkovsky" videos and
+//    - we already have typed in "tarkovsk"
+//
+//  valueToStream :: DOM -> EventStream String
+var valueToStream = compose(map(R.prop('value')), map(R.prop('target')), keyUpEventToStream);
+
+
 /*
  * IMPURE
  */
