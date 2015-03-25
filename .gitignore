@@ -29,5 +29,6 @@ bower_components
 
 # Browserify output files
 client.js
+client.js.map
 client-test.js
 
