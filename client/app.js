@@ -4,7 +4,8 @@ var $ = require('jquery'),
     R = require('ramda'),
     P = require('pointfree-fantasy'),
     B = require('baconjs'),
-    io = require('./io');
+    io = require('./io'),
+    http = require('./http');
 
 io.extendFn();
 

@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "baconjs": "^0.7.53",
+    "data.task": "^3.0.0",
     "jquery": "^2.1.3",
     "ramda": "^0.13.0"
   }
