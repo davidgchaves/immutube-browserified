@@ -21,6 +21,8 @@ var setHtml = R.curry(function(sel, x) { return $(sel).html(x); });
  * PURE
  */
 
+//  domSelectorToIO :: Selector -> IO DOM
+var domSelectorToIO = $.toIO();
 
 /*
  * IMPURE
