@@ -46,5 +46,6 @@ var valueToStream = compose(map(R.prop('value')), map(R.prop('target')), keyUpEv
  * IMPURE
  */
 
-exports.logKeyUpEventsIntoTheConsole = domSelectorToIO('#search').map(keyUpEventToStream).runIO().onValue(log);
+exports.logKeyUpEventsIntoTheConsole       = domSelectorToIO('#search').map(keyUpEventToStream).runIO().onValue(log);
+exports.logKeyUpEventsValuesIntoTheConsole = domSelectorToIO('#search').map(valueToStream).runIO().onValue(log);
 
