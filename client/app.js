@@ -82,6 +82,14 @@ var entryToListItem = function(entry) {
 //  videoEntries :: YoutubeResponse -> [DOM]
 var videoEntries = compose(map(entryToListItem), R.prop('entry'), R.prop('feed'));
 
+// NOTE: The former Folktale's data.future is now Folktale's data.task.
+//       It has the same intent:
+//        "A monad for time-dependant values, providing explicit effects
+//         for delayed computations, latency, etc."
+//       https://github.com/folktale/data.task
+//  search :: URL -> Task [DOM]
+var search = compose(map(videoEntries), http.getJSON);
+
 /*
  * IMPURE
  */
