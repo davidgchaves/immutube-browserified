@@ -94,9 +94,5 @@ var search = compose(map(videoEntries), http.getJSON);
  * IMPURE
  */
 
-exports.logKeyUpEventsIntoTheConsole       = domSelectorToIO('#search').map(keyUpEventToStream).runIO().onValue(log);
-exports.logKeyUpEventsValuesIntoTheConsole = domSelectorToIO('#search').map(valueToStream).runIO().onValue(log);
-exports.logYoutubeQueryURLsIntoTheConsole  = domSelectorToIOStream('#search').runIO().onValue(log);
-
 exports.renderVideoList = domSelectorToIOStream('#search').runIO().onValue( compose(fork(log, setHtml('#results')), search) );
 
