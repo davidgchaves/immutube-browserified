@@ -56,6 +56,24 @@ var urlToStream = compose(map(searchTermToURL), valueToStream);
 //  domSelectorToIOStream :: Selector -> IO EventStream URL
 var domSelectorToIOStream = compose(map(urlToStream), domSelectorToIO);
 
+// After examining in the browser the Youtube Response to our query,
+// we saw that we need to get two bits of that Response object (and it's pretty nested):
+//  -> the 'feed' property    (it's an Object)
+//    -> the 'entry' property (it's an Array of Objects)
+//      -> for each 'entry' (Object) the 'id' property (it's an Object too)
+//        -> which encapsulates a '$t' property with a value like:
+//          "http://gdata.youtube.com/feeds/api/videos/cZ9rlRqMQNA"
+//      -> for each 'entry' (Object) the 'title' property (it's an Object too)
+//        -> which encapsulates a '$t' property with a value like:
+//          "G & S 4 - Domino World Record - The Longest 3D Structure"
+// TL;DR: We need the Video URL ('id') and the Video Title ('title')
+//
+// We are going to do this in 2 steps:
+//  1st: get the 'entry' array
+//  2nd: dive into each 'entry' of the array and build the <li>s with
+//        - the video title, and
+//        - the youtube video id
+
 /*
  * IMPURE
  */
