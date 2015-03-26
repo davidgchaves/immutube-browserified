@@ -53,14 +53,6 @@ var searchTermToURL = function(searchTerm) {
 //  urlToStream :: DOM -> EventStream URL
 var urlToStream = compose(map(searchTermToURL), valueToStream);
 
-// NOTE: The former Folktale's data.future is now Folktale's data.task.
-//       It has the same intent:
-//        "A monad for time-dependant values, providing explicit effects
-//         for delayed computations, latency, etc."
-//       https://github.com/folktale/data.task
-//  searchToTask :: URL -> Task JSON
-var searchToTask = compose(map(http.getJSON), urlToStream);
-
 /*
  * IMPURE
  */
@@ -68,5 +60,4 @@ var searchToTask = compose(map(http.getJSON), urlToStream);
 exports.logKeyUpEventsIntoTheConsole       = domSelectorToIO('#search').map(keyUpEventToStream).runIO().onValue(log);
 exports.logKeyUpEventsValuesIntoTheConsole = domSelectorToIO('#search').map(valueToStream).runIO().onValue(log);
 exports.logYoutubeQueryURLsIntoTheConsole  = domSelectorToIO('#search').map(urlToStream).runIO().onValue(log);
-exports.logYoutubeTaskURLsIntoTheConsole   = domSelectorToIO('#search').map(searchToTask).runIO().onValue(fork(log, log));
 
