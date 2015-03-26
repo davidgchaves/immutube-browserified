@@ -74,6 +74,11 @@ var domSelectorToIOStream = compose(map(urlToStream), domSelectorToIO);
 //        - the video title, and
 //        - the youtube video id
 
+//  entryToListItem :: Entry -> DOM
+var entryToListItem = function(entry) {
+  return $('<li/>', { text: entry.title.$t, 'data-youtubeid': entry.id.$t });
+};
+
 /*
  * IMPURE
  */
