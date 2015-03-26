@@ -53,6 +53,9 @@ var searchTermToURL = function(searchTerm) {
 //  urlToStream :: DOM -> EventStream URL
 var urlToStream = compose(map(searchTermToURL), valueToStream);
 
+//  domSelectorToIOStream :: Selector -> IO EventStream URL
+var domSelectorToIOStream = compose(map(urlToStream), domSelectorToIO);
+
 /*
  * IMPURE
  */
