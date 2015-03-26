@@ -62,5 +62,5 @@ var domSelectorToIOStream = compose(map(urlToStream), domSelectorToIO);
 
 exports.logKeyUpEventsIntoTheConsole       = domSelectorToIO('#search').map(keyUpEventToStream).runIO().onValue(log);
 exports.logKeyUpEventsValuesIntoTheConsole = domSelectorToIO('#search').map(valueToStream).runIO().onValue(log);
-exports.logYoutubeQueryURLsIntoTheConsole  = domSelectorToIO('#search').map(urlToStream).runIO().onValue(log);
+exports.logYoutubeQueryURLsIntoTheConsole  = domSelectorToIOStream('#search').runIO().onValue(log);
 
