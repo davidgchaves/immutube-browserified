@@ -79,6 +79,9 @@ var entryToListItem = function(entry) {
   return $('<li/>', { text: entry.title.$t, 'data-youtubeid': entry.id.$t });
 };
 
+//  videoEntries :: YoutubeResponse -> [DOM]
+var videoEntries = compose(map(entryToListItem), R.prop('entry'), R.prop('feed'));
+
 /*
  * IMPURE
  */
