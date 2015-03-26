@@ -98,3 +98,5 @@ exports.logKeyUpEventsIntoTheConsole       = domSelectorToIO('#search').map(keyU
 exports.logKeyUpEventsValuesIntoTheConsole = domSelectorToIO('#search').map(valueToStream).runIO().onValue(log);
 exports.logYoutubeQueryURLsIntoTheConsole  = domSelectorToIOStream('#search').runIO().onValue(log);
 
+exports.renderVideoList = domSelectorToIOStream('#search').runIO().onValue( compose(fork(log, setHtml('#results')), search) );
+
