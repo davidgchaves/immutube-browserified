@@ -93,10 +93,17 @@ var search = compose(map(videoEntries), http.getJSON);
 //  clickEventToStream :: DOM -> EventStream DOMEvent
 var clickEventToStream = eventToStream('click');
 
+// After examining the output from clickEventToStream
+// (which happens to be a MouseEvent),
+// we need to get the 'target' property, so:
+//  clickTargetToStream :: DOM -> EventStream String
+var clickTargetToStream = compose(map(R.prop('target')), clickEventToStream);
+
 /*
  * IMPURE
  */
 
 exports.renderVideoList = domSelectorToIOStream('#search').runIO().onValue( compose(fork(log, setHtml('#results')), search) );
 
-exports.logClickEventToStream = clickEventToStream(document).onValue(log);
+exports.logClickEventToStream  = clickEventToStream(document).onValue(log);
+exports.logClickTargetToStream = clickTargetToStream(document).onValue(log);
