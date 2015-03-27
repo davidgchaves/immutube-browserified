@@ -90,9 +90,13 @@ var videoEntries = compose(map(entryToListItem), R.prop('entry'), R.prop('feed')
 //  search :: URL -> Task [DOM]
 var search = compose(map(videoEntries), http.getJSON);
 
+//  clickEventToStream :: DOM -> EventStream DOMEvent
+var clickEventToStream = eventToStream('click');
+
 /*
  * IMPURE
  */
 
 exports.renderVideoList = domSelectorToIOStream('#search').runIO().onValue( compose(fork(log, setHtml('#results')), search) );
 
+exports.logClickEventToStream = clickEventToStream(document).onValue(log);
