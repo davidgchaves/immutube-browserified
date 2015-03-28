@@ -6,7 +6,8 @@ var $ = require('jquery'),
     B = require('baconjs'),
     io = require('./io'),
     http = require('./http'),
-    Maybe = require('./maybe');
+    Maybe = require('./maybe'),
+    Player = require('./player');
 
 io.extendFn();
 
@@ -128,10 +129,8 @@ exports.maybeYoutubeId        = maybeYoutubeId;
  * IMPURE
  */
 
-exports.renderVideoList = domSelectorToIOStream('#search').runIO().onValue( compose(fork(log, setHtml('#results')), search) );
+var playYoutubeVideo = compose(setHtml('#player'), Player.create);
 
-exports.logClickEventToStream    = clickEventToStream(document).onValue(log);
-exports.logClickTargetToStream   = clickTargetToStream(document).onValue(log);
-exports.logYoutubeURLToYoutubeId = clickTargetToStream(document).onValue(compose(log, youtubeURLToYoutubeId, getDataFrom('youtubeid')));
-exports.logMaybeYoutubeId        = clickTargetToStream(document).onValue(compose(log, maybeYoutubeId));
+exports.renderVideoList   = domSelectorToIOStream('#search').runIO().onValue( compose(fork(log, setHtml('#results')), search) );
+exports.playSelectedVideo = clickTargetToStream(document).onValue( compose(map(playYoutubeVideo), maybeYoutubeId) );
 
