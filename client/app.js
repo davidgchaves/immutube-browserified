@@ -115,9 +115,13 @@ var clickTargetToStream = compose(map(R.prop('target')), clickEventToStream);
 //  youtubeURLToYoutubeId :: URL -> YoutubeId (a String)
 var youtubeURLToYoutubeId = compose(lastElementIn, R.split('/'));
 
+//  youtubeLink :: DOMElement (a String) -> YoutubeId (a String)
+var youtubeLink = compose(youtubeURLToYoutubeId, getDataFrom('youtubeid'));
+
 exports.lastElementIn         = lastElementIn;
 exports.youtubeURLToYoutubeId = youtubeURLToYoutubeId;
 exports.getDataFrom           = getDataFrom;
+exports.youtubeLink           = youtubeLink;
 
 /*
  * IMPURE
@@ -128,4 +132,5 @@ exports.renderVideoList = domSelectorToIOStream('#search').runIO().onValue( comp
 exports.logClickEventToStream    = clickEventToStream(document).onValue(log);
 exports.logClickTargetToStream   = clickTargetToStream(document).onValue(log);
 exports.logYoutubeURLToYoutubeId = clickTargetToStream(document).onValue(compose(log, youtubeURLToYoutubeId, getDataFrom('youtubeid')));
+exports.logYoutubeLink           = clickTargetToStream(document).onValue(compose(log, youtubeLink));
 
