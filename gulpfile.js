@@ -47,7 +47,7 @@ gulp.task('browserify-client', ['lint-client'], function() {
 });
 
 gulp.task('browserify-test', ['lint-test'], function() {
-  return gulp.src('test/client/initial_spec.js')
+  return gulp.src('test/client/**/*.js')
     .pipe(browserified)
     .pipe(rename('client-test.js'))
     .pipe(gulp.dest('build'));
