@@ -23,6 +23,9 @@ var setHtml = R.curry(function(sel, x) { return $(sel).html(x); });
 // We need it because we know the eventName (keyup) and want to curry waiting for the target
 var eventToStream = R.curry(function(eventName, target) { return B.fromEvent(target, eventName); });
 
+// Helper to get the last element in an Array
+var lastElementIn = function(array) { return array[array.length - 1]; };
+
 /*
  * PURE
  */
@@ -98,6 +101,8 @@ var clickEventToStream = eventToStream('click');
 // we need to get the 'target' property, so:
 //  clickTargetToStream :: DOM -> EventStream String
 var clickTargetToStream = compose(map(R.prop('target')), clickEventToStream);
+
+exports.lastElementIn = lastElementIn;
 
 /*
  * IMPURE
