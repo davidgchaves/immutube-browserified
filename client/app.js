@@ -26,6 +26,11 @@ var eventToStream = R.curry(function(eventName, target) { return B.fromEvent(tar
 // Helper to get the last element in an Array
 var lastElementIn = function(array) { return array[array.length - 1]; };
 
+
+// Helper to curry and switch args order using jQuery data function
+// We need it because we know the propertyName (youtubeid) and want to curry waiting for the DOMElement
+var getDataFrom = R.curry(function(name,elt) { return $(elt).data(name); });
+
 /*
  * PURE
  */
@@ -112,6 +117,7 @@ var youtubeURLToYoutubeId = compose(lastElementIn, R.split('/'));
 
 exports.lastElementIn         = lastElementIn;
 exports.youtubeURLToYoutubeId = youtubeURLToYoutubeId;
+exports.getDataFrom           = getDataFrom;
 
 /*
  * IMPURE
@@ -119,6 +125,7 @@ exports.youtubeURLToYoutubeId = youtubeURLToYoutubeId;
 
 exports.renderVideoList = domSelectorToIOStream('#search').runIO().onValue( compose(fork(log, setHtml('#results')), search) );
 
-exports.logClickEventToStream  = clickEventToStream(document).onValue(log);
-exports.logClickTargetToStream = clickTargetToStream(document).onValue(log);
+exports.logClickEventToStream    = clickEventToStream(document).onValue(log);
+exports.logClickTargetToStream   = clickTargetToStream(document).onValue(log);
+exports.logYoutubeURLToYoutubeId = clickTargetToStream(document).onValue(compose(log, youtubeURLToYoutubeId, getDataFrom('youtubeid')));
 

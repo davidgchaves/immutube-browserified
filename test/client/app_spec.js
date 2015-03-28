@@ -20,3 +20,11 @@ describe('youtubeURLToYoutubeId(url)', function() {
   });
 });
 
+describe('getDataFrom(youtubeid) helper', function() {
+  it('retrieves the data-youtubeid property of the given <li>', function() {
+    var youtubeidProperty = "http://gdata.youtube.com/feeds/api/videos/PBZsj8FPSbo";
+    var listItem          = "<li data-youtubeid=" + youtubeidProperty + ">Best sequence shot ever - Tarkovsky</li>";
+    expect(pure.getDataFrom('youtubeid')(listItem)).to.be.equal(youtubeidProperty);
+  });
+});
+
