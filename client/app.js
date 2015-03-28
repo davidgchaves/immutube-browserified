@@ -102,7 +102,16 @@ var clickEventToStream = eventToStream('click');
 //  clickTargetToStream :: DOM -> EventStream String
 var clickTargetToStream = compose(map(R.prop('target')), clickEventToStream);
 
-exports.lastElementIn = lastElementIn;
+// This is a real output from clickToStream
+//  <li data-youtubeid="http://gdata.youtube.com/feeds/api/videos/PBZsj8FPSbo">Best sequence shot ever - Tarkovsky</li>
+// and we need the video id
+//  PBZsj8FPSbo
+// So
+//  youtubeURLToYoutubeId :: URL -> YoutubeId (a String)
+var youtubeURLToYoutubeId = compose(lastElementIn, R.split('/'));
+
+exports.lastElementIn         = lastElementIn;
+exports.youtubeURLToYoutubeId = youtubeURLToYoutubeId;
 
 /*
  * IMPURE
@@ -112,3 +121,4 @@ exports.renderVideoList = domSelectorToIOStream('#search').runIO().onValue( comp
 
 exports.logClickEventToStream  = clickEventToStream(document).onValue(log);
 exports.logClickTargetToStream = clickTargetToStream(document).onValue(log);
+
