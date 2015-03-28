@@ -3,7 +3,8 @@
 var chai   = require('chai'),
     expect = chai.expect;
 
-var pure   = require('../../client/app.js');
+var pure   = require('../../client/app.js'),
+    Maybe  = require('../../client/maybe.js');
 
 describe('lastElementIn(array) helper', function() {
   it('returns the last element in the given array', function() {
@@ -28,11 +29,11 @@ describe('getDataFrom(youtubeid) helper', function() {
   });
 });
 
-describe('youtubeLink(listItem)', function() {
-  it('retrieves the youtube video id from the given <li>', function() {
+describe('maybeYoutubeLink(listItem)', function() {
+  it('retrieves and packs the youtube video id from the given <li> in a Maybe', function() {
     var youtubeId = "PBZsj8FPSbo";
     var listItem  = "<li data-youtubeid='http://gdata.youtube.com/feeds/api/videos/" + youtubeId + "'>Best sequence shot ever - Tarkovsky</li>";
-    expect(pure.youtubeLink(listItem)).to.be.equal(youtubeId);
+    expect(pure.maybeYoutubeId(listItem)).to.be.deep.equal(Maybe(youtubeId));
   });
 });
 

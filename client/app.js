@@ -5,7 +5,8 @@ var $ = require('jquery'),
     P = require('pointfree-fantasy'),
     B = require('baconjs'),
     io = require('./io'),
-    http = require('./http');
+    http = require('./http'),
+    Maybe = require('./maybe');
 
 io.extendFn();
 
@@ -115,13 +116,13 @@ var clickTargetToStream = compose(map(R.prop('target')), clickEventToStream);
 //  youtubeURLToYoutubeId :: URL -> YoutubeId (a String)
 var youtubeURLToYoutubeId = compose(lastElementIn, R.split('/'));
 
-//  youtubeLink :: DOMElement (a String) -> YoutubeId (a String)
-var youtubeLink = compose(youtubeURLToYoutubeId, getDataFrom('youtubeid'));
+//  maybeYoutubeId :: DOMElement (a String) -> Maybe YoutubeId (a Maybe String)
+var maybeYoutubeId = compose(map(youtubeURLToYoutubeId), Maybe, getDataFrom('youtubeid'));
 
 exports.lastElementIn         = lastElementIn;
 exports.youtubeURLToYoutubeId = youtubeURLToYoutubeId;
 exports.getDataFrom           = getDataFrom;
-exports.youtubeLink           = youtubeLink;
+exports.maybeYoutubeId        = maybeYoutubeId;
 
 /*
  * IMPURE
@@ -132,5 +133,5 @@ exports.renderVideoList = domSelectorToIOStream('#search').runIO().onValue( comp
 exports.logClickEventToStream    = clickEventToStream(document).onValue(log);
 exports.logClickTargetToStream   = clickTargetToStream(document).onValue(log);
 exports.logYoutubeURLToYoutubeId = clickTargetToStream(document).onValue(compose(log, youtubeURLToYoutubeId, getDataFrom('youtubeid')));
-exports.logYoutubeLink           = clickTargetToStream(document).onValue(compose(log, youtubeLink));
+exports.logMaybeYoutubeId        = clickTargetToStream(document).onValue(compose(log, maybeYoutubeId));
 
