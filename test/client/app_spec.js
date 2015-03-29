@@ -3,7 +3,7 @@
 var chai   = require('chai'),
     expect = chai.expect;
 
-var pure   = require('../../client/app.js'),
+var pure   = require('../../client/pure.js'),
     Maybe  = require('../../client/maybe.js');
 
 describe('lastElementIn(array) helper', function() {
