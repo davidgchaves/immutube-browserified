@@ -18,13 +18,13 @@
     "gulp-sourcemaps": "^1.5.1",
     "gulp-util": "^3.0.4",
     "mocha": "^2.2.1",
-    "pointfree-fantasy": "^0.1.1",
     "vinyl-transform": "^1.0.0"
   },
   "dependencies": {
     "baconjs": "^0.7.53",
     "data.task": "^3.0.0",
     "jquery": "^2.1.3",
+    "pointfree-fantasy": "^0.1.1",
     "ramda": "^0.13.0"
   }
 }
